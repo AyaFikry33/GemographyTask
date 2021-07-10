@@ -1,0 +1,21 @@
+<div class="container" *ngFor="let user of users | slice: (page-1) * pageSize : page * pageSize">
+  <div class="img">
+    <img src="{{user.owner.avatar_url}}" alt="">
+  </div>
+  <div class="desc">
+    <h3>{{user.full_name}}</h3>
+    <span>{{user.description}}</span>
+    <div class="star_issus">
+      <p>Stars: <span>{{user.stargazers_count}}</span></p>
+      <p>Issues: <span>{{user.open_issues_count}}</span></p>
+      <div>Submitted {{calculateDiff(user.pushed_at)}} days ago by {{user.name}}</div>
+    </div>
+  </div>
+  
+</div>
+
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="users.length">
+</ngb-pagination>
